@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f4f6fb" />
+    <title>图片绑定</title>
+    <script type="module" crossorigin src="./assets/index-CP2MX6yr.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-43Q66n3Q.css">
+  </head>
+  <body>
+    <div id="app">
+      <main class="app-shell">
+        <section class="view view--start" data-view="start">
+          <header class="brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="12" height="15" rx="3" />
+                <path d="M8 4V3.5A2.5 2.5 0 0 1 10.5 1h6A2.5 2.5 0 0 1 19 3.5v11.2a2.5 2.5 0 0 1-2.5 2.5H16" />
+              </svg>
+            </span>
+            <span>图片绑定</span>
+          </header>
+
+          <div class="start-visual" aria-hidden="true">
+            <div class="media-stack">
+              <div class="media-sheet media-sheet--back"></div>
+              <div class="media-sheet media-sheet--middle"></div>
+              <div class="media-sheet media-sheet--main">
+                <div class="media-art">
+                  <span class="media-sun"></span>
+                  <span class="media-ridge media-ridge--one"></span>
+                  <span class="media-ridge media-ridge--two"></span>
+                </div>
+                <div class="media-glint"></div>
+                <span class="media-index">01</span>
+                <svg class="media-scan" viewBox="0 0 64 64" fill="none">
+                  <path d="M2 19V9a7 7 0 0 1 7-7h10" />
+                  <path d="M45 2h10a7 7 0 0 1 7 7v10" />
+                  <path d="M62 45v10a7 7 0 0 1-7 7H45" />
+                  <path d="M19 62H9a7 7 0 0 1-7-7V45" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="start-actions">
+            <button class="primary-button" id="choosePhotos" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h2.2l1.4-1.5h3.8L15.3 5h2.2A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" />
+                <circle cx="12" cy="12" r="3.3" />
+              </svg>
+              从相册选择
+            </button>
+          </div>
+        </section>
+
+        <section class="view view--session" data-view="session" hidden>
+          <header class="session-topbar">
+            <div class="brand brand--compact">
+              <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="4" width="12" height="15" rx="3" />
+                  <path d="M8 4V3.5A2.5 2.5 0 0 1 10.5 1h6A2.5 2.5 0 0 1 19 3.5v11.2a2.5 2.5 0 0 1-2.5 2.5H16" />
+                </svg>
+              </span>
+              <span>图片绑定</span>
+            </div>
+
+            <div class="progress-readout" aria-live="polite">
+              <span id="currentNumber">01</span>
+              <span class="progress-divider">/</span>
+              <span id="totalNumber">00</span>
+            </div>
+
+            <button
+              class="icon-button"
+              id="reselectPhotos"
+              type="button"
+              aria-label="重新选择照片"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h2.2l1.4-1.5h3.8L15.3 5h2.2A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" />
+                <circle cx="12" cy="12" r="3.3" />
+              </svg>
+            </button>
+          </header>
+
+          <div class="progress-track" aria-hidden="true">
+            <span id="progressFill"></span>
+          </div>
+
+          <div class="workspace">
+            <section class="photo-stage" aria-label="当前相册图片">
+              <img id="currentPhoto" alt="" />
+              <div class="photo-shade" aria-hidden="true"></div>
+            </section>
+
+            <section class="camera-stage" id="cameraStage" aria-label="二维码扫描">
+              <video
+                id="cameraVideo"
+                autoplay
+                muted
+                playsinline
+                webkit-playsinline
+              ></video>
+              <div class="camera-shade" aria-hidden="true"></div>
+
+              <div class="scan-guide" aria-hidden="true">
+                <i class="corner corner--tl"></i>
+                <i class="corner corner--tr"></i>
+                <i class="corner corner--bl"></i>
+                <i class="corner corner--br"></i>
+                <span class="scan-line"></span>
+              </div>
+
+              <div class="camera-state" id="cameraState">
+                <span class="spinner" aria-hidden="true"></span>
+              </div>
+
+              <div class="scan-success" id="scanSuccess" hidden>
+                <span class="success-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="m6.5 12.2 3.5 3.5 7.5-8" />
+                  </svg>
+                </span>
+                <span>已识别</span>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view view--complete" data-view="complete" hidden>
+          <div class="complete-emblem" aria-hidden="true">
+            <span class="complete-ring complete-ring--outer"></span>
+            <span class="complete-ring complete-ring--inner"></span>
+            <span class="complete-check">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="m8 16.5 5.1 5L24 10.5" />
+              </svg>
+            </span>
+          </div>
+
+          <div class="complete-copy">
+            <strong id="completeCount">0 / 0</strong>
+            <span>全部完成</span>
+          </div>
+
+          <div class="complete-actions">
+            <button class="primary-button" id="bindAgain" type="button">
+              再次绑定
+            </button>
+            <button class="text-button" id="chooseAgain" type="button">
+              重新选图
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <input
+      class="visually-hidden"
+      id="photoInput"
+      type="file"
+      accept="image/*"
+      multiple
+    />
+  </body>
+</html>
